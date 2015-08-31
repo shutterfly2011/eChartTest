@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript test</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+	//window.alert(44);
+	//document.getElementById("demo").innerHTML = 2345;	
+</script>
+
+<script>
+	var a = {
+		color:"red",
+		style:{
+			year: 1923,
+			shape: "square"
+		},
+		
+		body:[
+		       type: "good",
+		       count: 10
+		       ]
+			
+	}; 
+	document.getElementById("demo").innerHTML = a.body;	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript test</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+	window.alert(44);
+	var a = {
+		color:"red",
+		range:[
+		       type: "good",
+		       count: 10
+		       
+		       ]
+			
+	};
+document.getElementById("demo").innerHTML = a.range.type;	
+</script>
+
+
+</body>
+</html>
