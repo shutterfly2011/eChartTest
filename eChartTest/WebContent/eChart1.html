@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- Prepare a Dom with size (width and height) for ECharts -->
+    <div id="mainChart" style="height:400px"></div>
+    <div id="2ndChart" style="height:400px"></div>
+    <!-- ECharts import -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // configure for module loader
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // use
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // require the specific chart type
+            ],
+            function (ec) {
+                // Initialize after dom ready
+                var myChart = ec.init(document.getElementById('mainChart')); 
+                
+                var option = {
+                    tooltip: {
+                        show: true,
+                        borderRadius: 5,
+                        zlevel: 5
+                        
+                    },
+                    grid: {
+                    	width: 800,
+                    	z: 50
+                    },
+                    legend: {
+                        data:['Sales'],
+                        borderWidth:4
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["Shirts", "Sweaters", "Chiffon Shirts", "Pants", "High Heels", "Socks"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"Sales",
+                            "type":"bar",
+                            "data":[5, 20, 40, 10, 10, 20]
+                        }
+                    ]
+                };
+        
+                // Load data into the ECharts instance 
+                myChart.setOption(option); 
+            }
+        );
+        
+        require(
+                [
+                 'echarts',
+                 'echarts/chart/line' // require the specific chart type
+             ],
+             function(ec2){
+                var myChart = ec2.init(document.getElementById("2ndChart"));
+                var option = {
+                	title:{
+                		text: "this is a line chart",
+                		subtext:"subtext of the line chart"
+                	},
+                	legend:{
+                		data:['high temp','low temp']
+                		
+                	},
+                	toolbox:{
+                		show:true,
+                		feature:{
+                			mark:{show:true},
+                			dataView:{show:true, readOnly:false},
+                			magicType:{show:true, type:['line','bar']},
+                			restore:{show:true},
+                			saveAsImage:{show:true}
+                			
+                		}
+                		
+                	},
+                	calculable:true,
+                	xAxis:[
+                	       {
+                	    	   type:'category',
+                	    	   boundaryGap:false,
+                	    	   data: ['mon','tue','wed','thu','fri','sat','sun']   
+                	       }
+                	       ],
+                	yAxis:[
+ 						{
+ 							type:'value',
+ 							axisLabel:{
+ 								formatter:'{value} degC'
+ 							}
+ 						}
+                	       ],
+                	series:[
+                   	       {
+                	    	   name:'high temp',
+                	    	   type:'line',
+                	    	   data:[11,11,15,13,12,13,10],
+                	    	   markPoint:{
+                	    		   data:[
+                	    		         {type:'max', name:'max value'},
+                	    		         {type:'min', name:'min value'}
+                	    		         ]
+                	    		   
+                	    	   },
+                	    	   markLine:{
+                	    		   data:[
+                	    	   			{type:'average', name:'average value'}
+                	    		         ]	   
+                	    	   }
+                	    	   
+                	       },
+                	       {
+                	    	   name:'low temperature',
+                	    	   type:'line',
+                	    	   data:[1,02,2,5,3,2,0],
+                	    	   markPoint:{
+                	    		   data:[
+                	    		         {name:'week low',value:-2, xAxis:1, yAxis:-1.5}
+                	    		         ]
+                	    		   
+                	    	   },
+                	    	   markLine:{
+                	    		   data:[{type:'average',name:'average temperature'}]
+                	    	   }
+                	    	   
+                	       }
+                	   ]    
+                	       
+                		
+                };
+                myChart.setOption(option);
+                	
+                }
+                
+        );
+    </script>
+</body>
