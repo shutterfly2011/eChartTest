@@ -12,28 +12,41 @@
 </script>
 
 <script>
-	var a = {
-		color:"red",
-		style:{
-			year: 1923,
-			shape: "square"
-		},
-		
-		body:[
-		      {
-		       type: "fat",
-		       count: 10
-		      },
-		      {
-		    	  name:"jack sparrow",
-		    	  age: "22"
-		    	  
-		      }
-		       ]
-			
-	}; 
-	a.body[0].name="bill clinton";
-	document.getElementById("demo").innerHTML = a.body[0].name;	
+//alert("hey");
+var d = [];
+var len = 0;
+var now = new Date();
+var timeTemp;
+var tempStepLength;
+var prevStepNum;
+var value;
+timeTemp =0; //stores the previous time shift in seconds
+prevStepNum = 1;
+//alert(timeTemp);
+
+while (len++ < 1000) {
+	tempStepLength = Math.random().toFixed(0)*20*60+300; //generate a random number between 5-25 minutes
+	//alert(tempStepLength);
+	
+	d.push([
+        new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength),
+        prevStepNum
+        //(Math.random()*10).toFixed(0) - 0
+    ]);
+	
+	
+	//alert(prevStepNum);
+	prevStepNum += 1;
+	d.push([
+		new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength+1), //add one more second
+		prevStepNum
+	        ]);
+	if (prevStepNum >=10) {
+		prevStepNum = 1; //resets prevStepNum to 1 
+	}
+	timeTemp += tempStepLength;
+}
+
 
 </script>
 </body>
