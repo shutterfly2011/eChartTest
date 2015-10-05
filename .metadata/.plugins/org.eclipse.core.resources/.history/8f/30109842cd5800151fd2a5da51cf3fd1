@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HTML testing container</title>
+<script type="text/javascript">
+alert("this is a test");	
+function dosomething()
+{
+	var a;
+	a=3;
+	alert("hello!");
+	}
+</script>
+</head>
+<body>
+	
+	<input type="button" value = "test" onclick="dosomething();"/>
+	<a id="valuefield">Here it is</a>
+	<script type="text/javascript">
+		document.getElementById("valuefield").innerHeml = a;
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HTML testing container</title>
+<script type="text/javascript">
+alert("this is a test");	
+function dosomething()
+{
+	alert("hello!");
+	}
+</script>
+</head>
+<body>
+	
+	<input type="button" value = "test" onclick="dosomething();"/>
+</body>
+</html>

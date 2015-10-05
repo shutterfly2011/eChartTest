@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts - Line Charts</title>
+</head>
+<body>
+    <!-- Prepare a Dom with size (width and height) for ECharts -->
+    <h1>Chart start</h1>
+    <div id="lineChart" style="height:400px"></div>
+    <!-- ECharts import -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <h1>Chart end</h1>
+    <script type="text/javascript">
+	    // configure for module loader
+	    require.config({
+	        paths: {
+	            echarts: 'http://echarts.baidu.com/build/dist'
+	        }
+	    });
+    
+		require(
+			[
+			 'echarts',
+			 'echarts/chart/line'
+			 ],
+			 function(ec){
+				var myChart = ec.init(document.getElementById('lineChart'));
+				option = {
+					    title : {
+					        text : 'Batch History',
+					        subtext : 'dataZoom Support'
+					    },
+					    tooltip : {
+					    	show: true,
+					        trigger: 'axis',
+					        formatter : function (params) {
+					            var date = new Date(params.value[0]);
+					            data = (date.getMonth() + 1) + '-'
+					                   + date.getDate() + ' '
+					                   + date.getHours() + ':'
+					                   + date.getMinutes();
+					            return data + '<br/>'
+					                   + params.value[1] + ', ' 
+					                   + params.value[2];
+					            //alert( data);
+					        }
+					    },
+					    toolbox: {
+					        show : true,
+					        feature : {
+					            mark : {show: true},
+					            dataView : {show: true, readOnly: false},
+					            restore : {show: true},
+					            saveAsImage : {show: true}
+					        }
+					    },
+					    dataZoom: {
+					        show: true,
+					        start : 70
+					    },
+					    legend : {
+					        data : ['series1']
+					    },
+					    grid: {
+					        y2: 80
+					    },
+					    xAxis : [
+					        {
+					            type : 'time',
+					            splitNumber:10
+					        }
+					    ],
+					    yAxis : [
+					        {
+					            type : 'value'
+					        }
+					    ],
+					    series : [
+					        {
+					            name: 'Batch Step number',
+					            type: 'line',
+					            //showAllSymbol: true,
+					            //symbolSize: function (value){
+					            //    return Math.round(value[2]/10) + 2;
+					            //},
+					            data: (function () {
+					            	var d = [];
+					            	var len = 0;
+					            	var now = new Date();
+					            	var timeTemp;
+					            	var tempStepLength;
+					            	var prevStepNum;
+					            	var value;
+					            	timeTemp =0; //stores the previous time shift in seconds
+					            	prevStepNum = 1;
+					            	//alert(timeTemp);
+									var prevprevStepNum = 0;
+					            	while (len++ < 1000) {
+					            		if (prevprevStepNum > prevStepNum) {
+					            			tempStepLength = 1;
+					            		}
+					            		else{
+					            			tempStepLength = Math.random().toFixed(0)*20*60+300; //generate a random number between 5-25 minutes
+					            		}	
+					            		//alert(tempStepLength);
+					            		
+					            		d.push([
+					            	        new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength),
+					            	        prevStepNum
+					            	        //(Math.random()*10).toFixed(0) - 0
+					            	    ]);
+					            		
+					            		
+					            		//alert(prevStepNum);
+					            		prevprevStepNum = prevStepNum;
+					            		prevStepNum += 1;
+					            		d.push([
+					            			new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength+1), //add one more second
+					            			prevStepNum
+					            		        ]);
+					            		if (prevStepNum >=10) {
+					            			prevStepNum = 1; //resets prevStepNum to 1 
+					            		}
+					            		timeTemp += tempStepLength;
+					            	}
+
+					                return d;
+					            })()
+					        }
+					    ]
+					};
+				myChart.setOption(option)
+			}
+		); 	
+    </script>
+</body>

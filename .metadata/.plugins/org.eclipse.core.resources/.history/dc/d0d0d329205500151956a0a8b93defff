@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts - Gauge Charts</title>
+</head>
+<body>
+    <!-- Prepare a Dom with size (width and height) for ECharts -->
+    <div id="main" style="height:400px"></div>
+    <div id="gaugeChart" style="height:400px"></div>
+    <!-- ECharts import -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // configure for module loader
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // use
+        
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // require the specific chart type
+            ],
+            function (ec) {
+                // Initialize after dom ready
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                var option = {
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        data:['Sales']
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["Shirts", "Sweaters", "Chiffon Shirts", "Pants", "High Heels", "Socks"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"Sales",
+                            "type":"bar",
+                            "data":[5, 20, 40, 10, 10, 20]
+                        }
+                    ]
+                };
+        
+                // Load data into the ECharts instance 
+                myChart.setOption(option); 
+            }
+        );
+        
+		require(
+				[
+				 'echarts','echarts/chart/gauge'
+				 ],		
+				 function(ec){
+					var myChart = ec.init(document.getElementById('gaugeChart'));
+					var option = {
+						toolbox:{
+							show: true,
+							feature:{
+							mark:{show:true},
+							restore:{show:true},
+							saveAsImage:{show:true}
+							}
+						},
+						series:[
+							{
+								name: 'target',
+								type: 'gauge',
+								startAngle: 150,
+								endAngle: -150,
+								min: 0,
+								max: 10,
+								axisLine:{
+									show:true,
+									lineStyle:{
+										color:[[.2, 'lightgreen'],[.3,'orange'],[.7,'skyblue'],[1,'#ff4500']],
+										width:30
+									}
+								},
+								axisTick:{
+									show:true,
+									splitNumber:5,
+									length: 8,
+									lineStyle:{
+										color:'#eee',
+										width:1,
+										type:'solid'
+									}
+								},
+								axisLabel:{
+									show:true,
+									formatter:function(v){
+										switch (v+''){
+											case '0': return 'ProcessWait';
+											case '1': return 'RMCharge';
+											case '3': return 'OxFeed';
+											case '4': return 'TAdjust';
+											case '6': return 'Digest';
+											case '7': return 'Sample';
+											case '9': return 'Transfer';
+											default: return '';
+										}
+									}
+								},	
+								pointer:{
+									length: '90%',
+									width: 20,
+									color: 'auto'
+								},
+								detail:{formatter:function(v){
+									switch (v+''){
+										case '0': return 'ProcessWait';
+										case '1': return 'RMCharge';
+										case '3': return 'OxFeed';
+										case '4': return 'TAdjust';
+										case '6': return 'Digest';
+										case '7': return 'Sample';
+										case '9': return 'Transfer';
+										default: return '';
+										}
+									},
+									show:true,
+									offsetCenter: ['-65%', 20]
+									
+								},
+								title:{
+									show:true,
+									offsetCenter:['-65%', -20]
+								},
+								data:[{value:2.5, name:'Tx_KR22 Step'}]
+								
+							}
+						]
+						
+					};
+					myChart.setOption(option);
+					
+				}
+			)
+    </script >
+            	
+    <script type="text/javascript">
+	    // configure for module loader
+	    require.config({
+	        paths: {
+	            echarts: 'http://echarts.baidu.com/build/dist'
+	        }
+	    });
+    
+		require(
+			[
+			 'echarts','echarts/chart/gauge'
+			 ],		
+			 function(ec){
+				var myChart = ec.init(document.getElementById('gaugeChart'));
+				var option={
+					tooltip:{
+						show:true,
+						feature:{mark:{show:true}, restore:{show:true}, saveAsImage:{show:true}}						
+					},
+					series:[
+						{
+							data:[20],
+							name:'Reactor Steps',
+							type:'gauge',
+							center:['50%','50%'],
+							radius:[0,'75%'],
+							startAngle:140,
+							endAngle:-140,
+							min:0,
+							max:100,
+							precision:0,
+							splitNumber:10,
+							axisLine:{
+								show:true,
+								lineStyle:{
+									color:[[0.2,'lightgreen'],[0.4,'orange'],[0.8,'skyblue'],[1,'#ff4500']],
+									width:30
+								}
+							},
+							axisTick:{
+								show:true,
+								splitNumber:5,
+								length:8,
+								lineStyle:{
+									color:'#eee',
+									width:1,
+									type:'solid'
+								}
+							},
+							axisLabel:{
+								show:true,
+								formatter: function(v){
+									switch(v+''){
+									case '10': return 'RMCharge';
+									case '20': return 'OxFeed';
+									case '30': return 'TAdjust';
+									case '40': return 'Digest';
+									case '50': return 'Transfer';
+									case '60': return 'ProcessWait';
+									}
+								},
+								textStyle:{color: '#333'}
+							},
+							splitLine:{
+								show:true,
+								length:30,
+								lineStyle:{
+									color:'#eee',
+									width: 2,
+									type:'solid'
+								}
+							},
+							title:{
+								show:true,
+								offsetCenter:['-65%', -10],
+								textStyle:{
+									color:'#333',
+									fontSize:15
+								}
+							},
+							detail:{
+								show:true,
+								backgroundColor: 'rgba(0,0,0,0)',
+								borderWidth:0,
+								borderColor: '#ccc',
+								width:100,
+								height: 40,
+								offsetCenter:['-60%',10],
+								formatter:'{value}%',
+								textStyle:{
+									color: 'auto',
+									fontSize:30
+								}
+							},
+							data:[{value:50, name:'CurrentStep'}]
+						}
+					        ]
+						
+				};
+				
+			}
+		) 	
+    </script>
+</body>

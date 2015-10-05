@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>toolBoxText Test</title>
+<script src="toolBoxText.js">
+	var filePath = "C:\Users\Xiaowei\Documents\GitHub\JavaScriptTest\TagHistory.csv";
+	var dataSet;
+	dataSet = handleFile(filePath);
+</script>
+
+</head>
+<body>
+
+<script>
+/*
+function drawOutput(lines) {
+	//Clear previous data
+	document.getElementById("output").innerHTML = "";
+	var table = document.createElement("table");
+	for (var i = 0; i < lines.length; i++) {
+	    var row = table.insertRow(-1);
+	    for (var j = 0; j < lines[i].length; j++) {
+	        var firstNameCell = row.insertCell(-1);
+	        firstNameCell.appendChild(document.createTextNode(lines[i][j]));
+	    }
+	}
+	document.getElementById("output").appendChild(table);
+};
+
+*/
+</script>
+
+<a id="output"></a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript test</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+	//window.alert(44);
+	//document.getElementById("demo").innerHTML = 2345;	
+</script>
+
+<script>
+var d = [];
+var len = 0;
+var now = new Date();
+var value;
+while (len++ < 2) {
+	
+    d.push([
+        //new Date(2015, 9, 1, 0, len*5),
+        (Math.random()*30).toFixed(0) - 0,
+        (Math.random()*10).toFixed(0) - 0
+    ]);
+}
+alert(d);
+</script>
+</body>
+</html>

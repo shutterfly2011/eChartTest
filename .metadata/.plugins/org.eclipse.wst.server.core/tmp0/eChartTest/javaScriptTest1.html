@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript test</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+	//window.alert(44);
+	//document.getElementById("demo").innerHTML = 2345;	
+</script>
+
+<script>
+//alert("hey");
+var d = [];
+var len = 0;
+var now = new Date();
+var timeTemp;
+var tempStepLength;
+var prevStepNum;
+var value;
+timeTemp =0; //stores the previous time shift in seconds
+prevStepNum = 1;
+//alert(timeTemp);
+
+while (len++ < 1000) {
+	tempStepLength = Math.random().toFixed(0)*20*60+300; //generate a random number between 5-25 minutes
+	//alert(tempStepLength);
+	
+	d.push([
+        new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength),
+        prevStepNum
+        //(Math.random()*10).toFixed(0) - 0
+    ]);
+	
+	
+	//alert(prevStepNum);
+	prevStepNum += 1;
+	d.push([
+		new Date(2015, 9, 1, 0,0, timeTemp+tempStepLength+1), //add one more second
+		prevStepNum
+	        ]);
+	if (prevStepNum >=10) {
+		prevStepNum = 1; //resets prevStepNum to 1 
+	}
+	timeTemp += tempStepLength;
+}
+
+
+</script>
+</body>
+</html>

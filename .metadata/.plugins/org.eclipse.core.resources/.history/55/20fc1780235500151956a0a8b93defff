@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts - Line Charts</title>
+</head>
+<body>
+    <!-- Prepare a Dom with size (width and height) for ECharts -->
+    <h1>Chart start</h1>
+    <div id="lineChart" style="height:400px"></div>
+    <!-- ECharts import -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <h1>Chart end</h1>
+    <script type="text/javascript">
+	    // configure for module loader
+	    require.config({
+	        paths: {
+	            echarts: 'http://echarts.baidu.com/build/dist'
+	        }
+	    });
+    
+		require(
+			[
+			 'echarts',
+			 'echarts/chart/bar'
+			 ],
+			 function(ec){
+				var myChart = ec.init(document.getElementById('lineChart'));
+				option = {
+						title:{
+							show:true,
+							text:'temperature change',
+							subtext: 'all fake numbers'
+						},
+						tooltip: {
+							show:true
+						}
+				
+						
+				};
+				myChart.setOption(option)
+			}
+		); 	
+    </script>
+</body>
